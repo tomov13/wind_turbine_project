@@ -74,7 +74,6 @@ class DataTransformer:
         Detects record-level anomalies using Isolation Forest on features:
         wind_speed, expected_power, and power_output.
         Returns a new column "if_anomaly" (1 for anomaly, 0 otherwise).
-        Note: Converts to Pandas, so best for smaller datasets.
         """
         try:
             self.logger.info("Detecting record-level anomalies with Isolation Forest...")

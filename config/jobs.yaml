@@ -1,0 +1,44 @@
+resources:
+  jobs:
+    turbine_data_pipeline:
+      name: turbine_data_pipeline
+      tasks:
+        - task_key: 01_ingestion
+          notebook_task:
+            notebook_path: /Workspace/Users/ovidiumtoma@gmail.com/wind_turbine_project/notebooks/1_bronze_ingestion
+            source: WORKSPACE
+          job_cluster_key: Job_cluster_wind_pipeline
+        - task_key: 02_cleaning
+          depends_on:
+            - task_key: 01_ingestion
+          notebook_task:
+            notebook_path: /Workspace/Users/ovidiumtoma@gmail.com/wind_turbine_project/notebooks/2_silver_cleanup
+            source: WORKSPACE
+          job_cluster_key: Job_cluster_wind_pipeline
+        - task_key: 03_aggregations
+          depends_on:
+            - task_key: 02_cleaning
+          notebook_task:
+            notebook_path: /Workspace/Users/ovidiumtoma@gmail.com/wind_turbine_project/notebooks/3_gold_transformations
+            source: WORKSPACE
+          job_cluster_key: Job_cluster_wind_pipeline
+      job_clusters:
+        - job_cluster_key: Job_cluster_wind_pipeline
+          new_cluster:
+            cluster_name: ""
+            spark_version: 15.4.x-scala2.12
+            azure_attributes:
+              first_on_demand: 1
+              availability: ON_DEMAND_AZURE
+              spot_bid_max_price: 100
+            node_type_id: Standard_DS3_v2
+            driver_node_type_id: Standard_DS3_v2
+            spark_env_vars:
+              PYSPARK_PYTHON: /databricks/python3/bin/python3
+            enable_elastic_disk: true
+            policy_id: 001485B958F7A502
+            data_security_mode: SINGLE_USER
+            runtime_engine: STANDARD
+            num_workers: 1
+      queue:
+        enabled: true

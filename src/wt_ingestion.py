@@ -20,7 +20,7 @@ class RawDataIngestor:
                   .format("csv")
                   .option("header", "true")
                   .option("inferSchema", "true")
-                  .option("cloudFiles.inferColumnTypes", "true")  # Enable file metadata
+                  .option("cloudFiles.inferColumnTypes", "true")
                   .load(f"{directory_path}/data_group_*.csv")
                   .cache())
 
@@ -44,7 +44,7 @@ class RawDataIngestor:
                   .format("csv")
                   .option("header", "true")
                   .option("inferSchema", "true")
-                  .option("cloudFiles.inferColumnTypes", "true")  # Ensure metadata is captured
+                  .option("cloudFiles.inferColumnTypes", "true")
                   .load(f"{directory_path}/Location*.csv")
                   .withColumn("_metadata.file_path", col("_metadata.file_path"))  # Capture file path
                   .cache())
