@@ -203,7 +203,7 @@ This file sets up a **three-task** job:
 
 Each task references one of the corresponding notebooks in the `notebooks/` folder.
 
-You can import this YAML into Databricks (under **Jobs** -> **Create Job** -> **'Upload'**), or replicate the tasks manually in the Databricks UI.
+You can import this YAML into Databricks (under **Jobs** -> **Create Job** -> **'Switch to code version (YAML)'**), or replicate the tasks manually in the Databricks UI.
 
 ---
 
