@@ -5,21 +5,21 @@ resources:
       tasks:
         - task_key: 01_ingestion
           notebook_task:
-            notebook_path: /Workspace/Users/ovidiumtoma@gmail.com/wind_turbine_project/notebooks/1_bronze_ingestion
+            notebook_path: /Workspace/Users/#email#/wind_turbine_project/notebooks/1_bronze_ingestion
             source: WORKSPACE
           job_cluster_key: Job_cluster_wind_pipeline
         - task_key: 02_cleaning
           depends_on:
             - task_key: 01_ingestion
           notebook_task:
-            notebook_path: /Workspace/Users/ovidiumtoma@gmail.com/wind_turbine_project/notebooks/2_silver_cleanup
+            notebook_path: /Workspace/Users/#email#/wind_turbine_project/notebooks/2_silver_cleanup
             source: WORKSPACE
           job_cluster_key: Job_cluster_wind_pipeline
         - task_key: 03_aggregations
           depends_on:
             - task_key: 02_cleaning
           notebook_task:
-            notebook_path: /Workspace/Users/ovidiumtoma@gmail.com/wind_turbine_project/notebooks/3_gold_transformations
+            notebook_path: /Workspace/Users/#email#/wind_turbine_project/notebooks/3_gold_transformations
             source: WORKSPACE
           job_cluster_key: Job_cluster_wind_pipeline
       job_clusters:
